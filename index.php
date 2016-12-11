@@ -1,7 +1,6 @@
 <?php
 /*
-    方倍工作室 http://www.cnblogs.com/txw1958/
-    CopyRight 2013 www.fangbei.org  All Rights Reserved
+    change by steps,and keep patient
 */
 
 define("TOKEN", "weixin");
