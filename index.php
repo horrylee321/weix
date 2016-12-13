@@ -1,7 +1,7 @@
 <?php
-/*
-    change by steps,and keep patient
-*/
+
+  echo  "hello world,who areyou !!!";
+
 
 define("TOKEN", "weixin");
 $wechatObj = new wechatCallbackapiTest();
