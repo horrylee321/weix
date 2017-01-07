@@ -1,6 +1,6 @@
 <?php
 
-  echo  "hello world,who areyou !!!";
+
 
 
 define("TOKEN", "weixin");
@@ -60,7 +60,7 @@ class wechatCallbackapiTest
                         <Content><![CDATA[%s]]></Content>
                         <FuncFlag>0</FuncFlag>
                         </xml>";
-            if($keyword == "?" || $keyword == "？")
+            if($keyword == "?" || $keyword == "11")
             {
                 $msgType = "text";
                 $contentStr = date("Y-m-d H:i:s",time());
