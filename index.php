@@ -48,10 +48,17 @@ class wechatCallbackapiTest
 
         if (!empty($postStr)){
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            $fromUsername = $postObj->FromUserName;
-            $toUsername = $postObj->ToUserName;
-            $keyword = trim($postObj->Content);
-            $time = time();
+           $fromUsername = $postObj->FromUserName;
+			$toUsername = $postObj->ToUserName;
+			$type = $postObj->MsgType;
+			$event=$postObj->Event;
+			$Event_Key=$postObj->EventKey;
+			$mid=$postObj->MediaId;
+			$link=$postObj->Url;
+			$latitude = $postObj->Location_X;
+			$longitude = $postObj->Location_Y;
+			$keyword = trim($postObj->Content);
+			$time = time();
             $textTpl = "<xml>
                         <ToUserName><![CDATA[%s]]></ToUserName>
                         <FromUserName><![CDATA[%s]]></FromUserName>
@@ -60,16 +67,17 @@ class wechatCallbackapiTest
                         <Content><![CDATA[%s]]></Content>
                         <FuncFlag>0</FuncFlag>
                         </xml>";
-            if($keyword == "?" || $keyword == "115")
-            {
-                $msgType = "text";
-                $contentStr = date("Y-m-d H:i:s",time());
-                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+            if($keyword!='')
+			{
+				$contentStr=$keyword;
+			}
+			elseif ($type=="image"){$contentStr="您发送的是图片消息,消息的MediaId是".$mid;}
+			
+			else{echo "";}
+            
+            $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 echo $resultStr;
             }
-        }else{
-            echo "";
-            exit;
         }
     }
 }
